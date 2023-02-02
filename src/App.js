@@ -8,9 +8,8 @@ export default class App extends Component {
     return (
       <div>
         <Navbar/>
-        <h2 className='text-4xl text-center mt-28 '>TOP HEADLINES</h2>
 
-        <News pagesize={5}/> 
+        <News pagesize={5} country= "in" category="sports"/> 
 
       </div>
     )
