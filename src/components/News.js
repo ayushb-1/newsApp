@@ -80,8 +80,8 @@ export class News extends Component {
                  
         </div>
           <div className="flex justify-between mx-10">
-          <button disabled={this.state.page<=1} type="button" onClick={this.handleprev} class="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">&larr; prev</button>
-          <button disabled ={this.state.page > this.state.totalResults/this.props.pagesize} type="button" onClick={this.handlenext} class="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">next &rarr;</button>
+          <button disabled={this.state.page<=1} type="button" onClick={this.handleprev} className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">&larr; prev</button>
+          <button disabled ={this.state.page > this.state.totalResults/this.props.pagesize} type="button" onClick={this.handlenext} className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">next &rarr;</button>
           </div>
       </div>
     )
