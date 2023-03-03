@@ -33,14 +33,19 @@ export class News extends Component {
   }
 
   async updateNews(){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9837adbf8d1e4dacb083a3d361d7f92c&pagesize=${this.props.pagesize}`;
+
+    this.props.setProgress(10);
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9837adbf8d1e4dacb083a3d361d7f92c&page=${this.state.page}&pagesize=${this.props.pagesize}`;
     this.setState({loading:true});
     let data = await fetch(url);
+    this.props.setProgress(30);
     let parseData = await data.json();
+    this.props.setProgress(70);
     this.setState({articles:parseData.articles, 
       totalResults:parseData.totalResults,
       loading:false
     })
+    this.props.setProgress(100);
   }
   async componentDidMount(){
     this.updateNews();
@@ -49,7 +54,7 @@ export class News extends Component {
    fetchMoreData=async()=>{
 
     this.setState({page: this.state.page+1})
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9837adbf8d1e4dacb083a3d361d7f92c&pagesize=${this.props.pagesize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9837adbf8d1e4dacb083a3d361d7f92c&page=${this.state.page}&pagesize=${this.props.pagesize}`;
 
     let data = await fetch(url);
     let parseData = await data.json();
@@ -57,7 +62,7 @@ export class News extends Component {
       totalResults:parseData.totalResults,
       
     })
-  }
+  };
 
   render() {
     return (
@@ -74,7 +79,7 @@ export class News extends Component {
         >
         
           <div className='p-10  px-20 flex flex-col lg:grid grid-cols-3' >
-          {!this.state.loading && this.state.articles.map((element)=>{
+          {this.state.articles.map((element)=>{
             
             return <div className="my-4" key={element.url}>
                       <NewsItem  title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} time={element.publishedAt} source={element.source.name}/>
